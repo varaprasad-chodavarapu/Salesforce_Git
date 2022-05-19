@@ -10,6 +10,6 @@ global with sharing class AccountManager
        // ResponseWrapper objResp = new ResponseWrapper();
         Account obj = [select Id,Name ,(select Id,Name from Contacts) from Account where Id=:strAccId limit 1];
         return obj ;
-        //hello prasad chodavarapu.
+        //hello prasad chodavarapu. designed and developed by prasad 
     }
 }
