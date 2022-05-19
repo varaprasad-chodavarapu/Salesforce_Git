@@ -1,0 +1,24 @@
+@IsTest
+public class AccountProcessorTest {
+    public static testmethod void testAccountProcessor(){
+        Account a=new Account();
+        a.Name='Test Account';
+        insert a;
+        
+        Contact con=new Contact();
+        con.FirstName='Prasad';
+        con.LastName='Chodavarapu';
+        con.AccountId=a.Id;
+        
+        insert con;
+        
+        List<Id> accListId=new List<Id>();
+        accListId.add(a.Id);
+        
+        Test.startTest();
+        AccountProcessor.countContacts(accListId);
+        Test.stopTest();
+        Account acc=[select Number_Of_Contacts__c from Account where Id=:a.Id];
+        System.assertEquals(Integer.valueOf(acc.Number_Of_Contacts__c),1);
+    }
+}
